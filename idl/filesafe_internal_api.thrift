@@ -76,13 +76,13 @@ struct RecoveryFileRes{
 }
 
 
-struct InternalService{
+service InternalService{
     // 检索用户文件
     SearchFileRes search_file(1: SearchFileReq req),
     // 校验文件
     CheckFileRes check_file(1: CheckFileReq req),
     // 上传文件
-    AddFileRes check_file(1: AddFileReq req),
+    AddFileRes upload_file(1: AddFileReq req),
     // 移动文件
     MoveFileRes move_file(1: MoveFileReq req),
     // 删除文件
