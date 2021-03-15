@@ -1,0 +1,33 @@
+<project>
+
+    <!-- 模型版本 -->
+    <modelVersion>4.0.0</modelVersion>
+    <!-- 公司或者组织的唯一标志，并且配置时生成的路径也是由此生成， 如com.companyname.project-group，maven会将该项目打成的jar包放本地路径：/com/companyname/project-group -->
+    <groupId>Zpl</groupId>
+ 
+    <!-- 项目的唯一ID，一个groupId下面可能多个项目，就是靠artifactId来区分的 -->
+    <artifactId>project</artifactId>
+ 
+    <!-- 版本号 -->
+    <version>1.0</version>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.thrift</groupId>
+            <artifactId>libthrift</artifactId>
+            <version>0.12.0</version>
+        </dependency>
+    </dependencies> 
+    <build>
+        <plugins>   
+            <plugin>    <!--plugins要写在build标签下，不然无法识别 -->
+                <artifactId>maven-compiler-plugin</artifactId>   
+                <version>3.1</version>    <!--maven-compiler-plugin版本写一个中央仓库有的版本，保存后它会自动下载 -->
+                <configuration>   
+                    <source>12</source>    <!--我的jdk是10.0.1的，写成10.0.1不好用，所以就写成10了 -->
+                    <target>12</target>   
+                </configuration>   
+            </plugin> 
+        </plugins> 
+    </build> 
+</project>
