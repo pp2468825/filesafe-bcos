@@ -1,4 +1,4 @@
-package service.demo;
+package filesafe;
 
 import org.apache.thrift.protocol.TBinaryProtocol;
 import org.apache.thrift.transport.TFramedTransport;
@@ -16,13 +16,16 @@ public class FileClient
     public static void main(String[] args)
     {
         // 测试文件路径
-        String filePath = "./1.txt";
+        String filePath = "./filesafe/3.txt";
  
         // 构造文件数据
         byte[] bytes = toByteArray(filePath);
-        FileDataReq fileData = new FileDataReq();
-        fileData.name = filePath;
-        fileData.buff = ByteBuffer.wrap(bytes);
+        SearchFileReq req = new SearchFileReq();
+        req.user_id = "13787287171";
+
+        AddFileReq add_req = new AddFileReq();
+        add_req.file_path = filePath;
+        add_req.buff = ByteBuffer.wrap(bytes);
  
         // 构造Thrift客户端，发起请求
         try
@@ -32,10 +35,11 @@ public class FileClient
             TFramedTransport framedTransport = new TFramedTransport(socket);
             framedTransport.open();
             TBinaryProtocol binaryProtocol = new TBinaryProtocol(framedTransport);
-            FileInfoExtractService.Client client = new FileInfoExtractService.Client(binaryProtocol);
-            FileDataRsp rsp = client.uploadFile(fileData);
-            System.out.printf("code = %d\n", rsp.code);
-            System.out.printf("msg = %s\n", rsp.msg);
+            InternalService.Client client = new InternalService.Client(binaryProtocol);
+            SearchFileRes rsp = client.search_file(req);
+            System.out.println(rsp);
+            AddFileRes add_rsp = client.add_file(add_req);
+            System.out.println(add_rsp);
         }
         catch (Exception x)
         {

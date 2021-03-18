@@ -4,25 +4,36 @@
  * DO NOT EDIT UNLESS YOU ARE SURE THAT YOU KNOW WHAT YOU ARE DOING
  *  @generated
  */
-package service.demo;
+package filesafe;
 
 @SuppressWarnings({"cast", "rawtypes", "serial", "unchecked", "unused"})
-public class FileDataReq implements org.apache.thrift.TBase<FileDataReq, FileDataReq._Fields>, java.io.Serializable, Cloneable, Comparable<FileDataReq> {
-  private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("FileDataReq");
+public class RecoveryFileRes implements org.apache.thrift.TBase<RecoveryFileRes, RecoveryFileRes._Fields>, java.io.Serializable, Cloneable, Comparable<RecoveryFileRes> {
+  private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("RecoveryFileRes");
 
-  private static final org.apache.thrift.protocol.TField NAME_FIELD_DESC = new org.apache.thrift.protocol.TField("name", org.apache.thrift.protocol.TType.STRING, (short)1);
-  private static final org.apache.thrift.protocol.TField BUFF_FIELD_DESC = new org.apache.thrift.protocol.TField("buff", org.apache.thrift.protocol.TType.STRING, (short)2);
+  private static final org.apache.thrift.protocol.TField STATUS_CODE_FIELD_DESC = new org.apache.thrift.protocol.TField("status_code", org.apache.thrift.protocol.TType.I32, (short)1);
+  private static final org.apache.thrift.protocol.TField MESSAGE_FIELD_DESC = new org.apache.thrift.protocol.TField("message", org.apache.thrift.protocol.TType.STRING, (short)2);
+  private static final org.apache.thrift.protocol.TField BUFF_FIELD_DESC = new org.apache.thrift.protocol.TField("buff", org.apache.thrift.protocol.TType.STRING, (short)10);
 
-  private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new FileDataReqStandardSchemeFactory();
-  private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new FileDataReqTupleSchemeFactory();
+  private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new RecoveryFileResStandardSchemeFactory();
+  private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new RecoveryFileResTupleSchemeFactory();
 
-  public @org.apache.thrift.annotation.Nullable java.lang.String name; // required
+  /**
+   * 
+   * @see StatusCode
+   */
+  public @org.apache.thrift.annotation.Nullable StatusCode status_code; // required
+  public @org.apache.thrift.annotation.Nullable java.lang.String message; // required
   public @org.apache.thrift.annotation.Nullable java.nio.ByteBuffer buff; // required
 
   /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
   public enum _Fields implements org.apache.thrift.TFieldIdEnum {
-    NAME((short)1, "name"),
-    BUFF((short)2, "buff");
+    /**
+     * 
+     * @see StatusCode
+     */
+    STATUS_CODE((short)1, "status_code"),
+    MESSAGE((short)2, "message"),
+    BUFF((short)10, "buff");
 
     private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
 
@@ -38,9 +49,11 @@ public class FileDataReq implements org.apache.thrift.TBase<FileDataReq, FileDat
     @org.apache.thrift.annotation.Nullable
     public static _Fields findByThriftId(int fieldId) {
       switch(fieldId) {
-        case 1: // NAME
-          return NAME;
-        case 2: // BUFF
+        case 1: // STATUS_CODE
+          return STATUS_CODE;
+        case 2: // MESSAGE
+          return MESSAGE;
+        case 10: // BUFF
           return BUFF;
         default:
           return null;
@@ -86,70 +99,111 @@ public class FileDataReq implements org.apache.thrift.TBase<FileDataReq, FileDat
   public static final java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
   static {
     java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
-    tmpMap.put(_Fields.NAME, new org.apache.thrift.meta_data.FieldMetaData("name", org.apache.thrift.TFieldRequirementType.REQUIRED, 
+    tmpMap.put(_Fields.STATUS_CODE, new org.apache.thrift.meta_data.FieldMetaData("status_code", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+        new org.apache.thrift.meta_data.EnumMetaData(org.apache.thrift.protocol.TType.ENUM, StatusCode.class)));
+    tmpMap.put(_Fields.MESSAGE, new org.apache.thrift.meta_data.FieldMetaData("message", org.apache.thrift.TFieldRequirementType.DEFAULT, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-    tmpMap.put(_Fields.BUFF, new org.apache.thrift.meta_data.FieldMetaData("buff", org.apache.thrift.TFieldRequirementType.REQUIRED, 
+    tmpMap.put(_Fields.BUFF, new org.apache.thrift.meta_data.FieldMetaData("buff", org.apache.thrift.TFieldRequirementType.DEFAULT, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING        , true)));
     metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
-    org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(FileDataReq.class, metaDataMap);
+    org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(RecoveryFileRes.class, metaDataMap);
   }
 
-  public FileDataReq() {
+  public RecoveryFileRes() {
   }
 
-  public FileDataReq(
-    java.lang.String name,
+  public RecoveryFileRes(
+    StatusCode status_code,
+    java.lang.String message,
     java.nio.ByteBuffer buff)
   {
     this();
-    this.name = name;
+    this.status_code = status_code;
+    this.message = message;
     this.buff = org.apache.thrift.TBaseHelper.copyBinary(buff);
   }
 
   /**
    * Performs a deep copy on <i>other</i>.
    */
-  public FileDataReq(FileDataReq other) {
-    if (other.isSetName()) {
-      this.name = other.name;
+  public RecoveryFileRes(RecoveryFileRes other) {
+    if (other.isSetStatus_code()) {
+      this.status_code = other.status_code;
+    }
+    if (other.isSetMessage()) {
+      this.message = other.message;
     }
     if (other.isSetBuff()) {
       this.buff = org.apache.thrift.TBaseHelper.copyBinary(other.buff);
     }
   }
 
-  public FileDataReq deepCopy() {
-    return new FileDataReq(this);
+  public RecoveryFileRes deepCopy() {
+    return new RecoveryFileRes(this);
   }
 
   @Override
   public void clear() {
-    this.name = null;
+    this.status_code = null;
+    this.message = null;
     this.buff = null;
   }
 
+  /**
+   * 
+   * @see StatusCode
+   */
   @org.apache.thrift.annotation.Nullable
-  public java.lang.String getName() {
-    return this.name;
+  public StatusCode getStatus_code() {
+    return this.status_code;
   }
 
-  public FileDataReq setName(@org.apache.thrift.annotation.Nullable java.lang.String name) {
-    this.name = name;
+  /**
+   * 
+   * @see StatusCode
+   */
+  public RecoveryFileRes setStatus_code(@org.apache.thrift.annotation.Nullable StatusCode status_code) {
+    this.status_code = status_code;
     return this;
   }
 
-  public void unsetName() {
-    this.name = null;
+  public void unsetStatus_code() {
+    this.status_code = null;
   }
 
-  /** Returns true if field name is set (has been assigned a value) and false otherwise */
-  public boolean isSetName() {
-    return this.name != null;
+  /** Returns true if field status_code is set (has been assigned a value) and false otherwise */
+  public boolean isSetStatus_code() {
+    return this.status_code != null;
   }
 
-  public void setNameIsSet(boolean value) {
+  public void setStatus_codeIsSet(boolean value) {
     if (!value) {
-      this.name = null;
+      this.status_code = null;
+    }
+  }
+
+  @org.apache.thrift.annotation.Nullable
+  public java.lang.String getMessage() {
+    return this.message;
+  }
+
+  public RecoveryFileRes setMessage(@org.apache.thrift.annotation.Nullable java.lang.String message) {
+    this.message = message;
+    return this;
+  }
+
+  public void unsetMessage() {
+    this.message = null;
+  }
+
+  /** Returns true if field message is set (has been assigned a value) and false otherwise */
+  public boolean isSetMessage() {
+    return this.message != null;
+  }
+
+  public void setMessageIsSet(boolean value) {
+    if (!value) {
+      this.message = null;
     }
   }
 
@@ -162,12 +216,12 @@ public class FileDataReq implements org.apache.thrift.TBase<FileDataReq, FileDat
     return org.apache.thrift.TBaseHelper.copyBinary(buff);
   }
 
-  public FileDataReq setBuff(byte[] buff) {
+  public RecoveryFileRes setBuff(byte[] buff) {
     this.buff = buff == null ? (java.nio.ByteBuffer)null   : java.nio.ByteBuffer.wrap(buff.clone());
     return this;
   }
 
-  public FileDataReq setBuff(@org.apache.thrift.annotation.Nullable java.nio.ByteBuffer buff) {
+  public RecoveryFileRes setBuff(@org.apache.thrift.annotation.Nullable java.nio.ByteBuffer buff) {
     this.buff = org.apache.thrift.TBaseHelper.copyBinary(buff);
     return this;
   }
@@ -189,11 +243,19 @@ public class FileDataReq implements org.apache.thrift.TBase<FileDataReq, FileDat
 
   public void setFieldValue(_Fields field, @org.apache.thrift.annotation.Nullable java.lang.Object value) {
     switch (field) {
-    case NAME:
+    case STATUS_CODE:
       if (value == null) {
-        unsetName();
+        unsetStatus_code();
       } else {
-        setName((java.lang.String)value);
+        setStatus_code((StatusCode)value);
+      }
+      break;
+
+    case MESSAGE:
+      if (value == null) {
+        unsetMessage();
+      } else {
+        setMessage((java.lang.String)value);
       }
       break;
 
@@ -215,8 +277,11 @@ public class FileDataReq implements org.apache.thrift.TBase<FileDataReq, FileDat
   @org.apache.thrift.annotation.Nullable
   public java.lang.Object getFieldValue(_Fields field) {
     switch (field) {
-    case NAME:
-      return getName();
+    case STATUS_CODE:
+      return getStatus_code();
+
+    case MESSAGE:
+      return getMessage();
 
     case BUFF:
       return getBuff();
@@ -232,8 +297,10 @@ public class FileDataReq implements org.apache.thrift.TBase<FileDataReq, FileDat
     }
 
     switch (field) {
-    case NAME:
-      return isSetName();
+    case STATUS_CODE:
+      return isSetStatus_code();
+    case MESSAGE:
+      return isSetMessage();
     case BUFF:
       return isSetBuff();
     }
@@ -242,23 +309,32 @@ public class FileDataReq implements org.apache.thrift.TBase<FileDataReq, FileDat
 
   @Override
   public boolean equals(java.lang.Object that) {
-    if (that instanceof FileDataReq)
-      return this.equals((FileDataReq)that);
+    if (that instanceof RecoveryFileRes)
+      return this.equals((RecoveryFileRes)that);
     return false;
   }
 
-  public boolean equals(FileDataReq that) {
+  public boolean equals(RecoveryFileRes that) {
     if (that == null)
       return false;
     if (this == that)
       return true;
 
-    boolean this_present_name = true && this.isSetName();
-    boolean that_present_name = true && that.isSetName();
-    if (this_present_name || that_present_name) {
-      if (!(this_present_name && that_present_name))
+    boolean this_present_status_code = true && this.isSetStatus_code();
+    boolean that_present_status_code = true && that.isSetStatus_code();
+    if (this_present_status_code || that_present_status_code) {
+      if (!(this_present_status_code && that_present_status_code))
         return false;
-      if (!this.name.equals(that.name))
+      if (!this.status_code.equals(that.status_code))
+        return false;
+    }
+
+    boolean this_present_message = true && this.isSetMessage();
+    boolean that_present_message = true && that.isSetMessage();
+    if (this_present_message || that_present_message) {
+      if (!(this_present_message && that_present_message))
+        return false;
+      if (!this.message.equals(that.message))
         return false;
     }
 
@@ -278,9 +354,13 @@ public class FileDataReq implements org.apache.thrift.TBase<FileDataReq, FileDat
   public int hashCode() {
     int hashCode = 1;
 
-    hashCode = hashCode * 8191 + ((isSetName()) ? 131071 : 524287);
-    if (isSetName())
-      hashCode = hashCode * 8191 + name.hashCode();
+    hashCode = hashCode * 8191 + ((isSetStatus_code()) ? 131071 : 524287);
+    if (isSetStatus_code())
+      hashCode = hashCode * 8191 + status_code.getValue();
+
+    hashCode = hashCode * 8191 + ((isSetMessage()) ? 131071 : 524287);
+    if (isSetMessage())
+      hashCode = hashCode * 8191 + message.hashCode();
 
     hashCode = hashCode * 8191 + ((isSetBuff()) ? 131071 : 524287);
     if (isSetBuff())
@@ -290,19 +370,29 @@ public class FileDataReq implements org.apache.thrift.TBase<FileDataReq, FileDat
   }
 
   @Override
-  public int compareTo(FileDataReq other) {
+  public int compareTo(RecoveryFileRes other) {
     if (!getClass().equals(other.getClass())) {
       return getClass().getName().compareTo(other.getClass().getName());
     }
 
     int lastComparison = 0;
 
-    lastComparison = java.lang.Boolean.compare(isSetName(), other.isSetName());
+    lastComparison = java.lang.Boolean.compare(isSetStatus_code(), other.isSetStatus_code());
     if (lastComparison != 0) {
       return lastComparison;
     }
-    if (isSetName()) {
-      lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.name, other.name);
+    if (isSetStatus_code()) {
+      lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.status_code, other.status_code);
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+    }
+    lastComparison = java.lang.Boolean.compare(isSetMessage(), other.isSetMessage());
+    if (lastComparison != 0) {
+      return lastComparison;
+    }
+    if (isSetMessage()) {
+      lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.message, other.message);
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -335,14 +425,22 @@ public class FileDataReq implements org.apache.thrift.TBase<FileDataReq, FileDat
 
   @Override
   public java.lang.String toString() {
-    java.lang.StringBuilder sb = new java.lang.StringBuilder("FileDataReq(");
+    java.lang.StringBuilder sb = new java.lang.StringBuilder("RecoveryFileRes(");
     boolean first = true;
 
-    sb.append("name:");
-    if (this.name == null) {
+    sb.append("status_code:");
+    if (this.status_code == null) {
       sb.append("null");
     } else {
-      sb.append(this.name);
+      sb.append(this.status_code);
+    }
+    first = false;
+    if (!first) sb.append(", ");
+    sb.append("message:");
+    if (this.message == null) {
+      sb.append("null");
+    } else {
+      sb.append(this.message);
     }
     first = false;
     if (!first) sb.append(", ");
@@ -359,12 +457,6 @@ public class FileDataReq implements org.apache.thrift.TBase<FileDataReq, FileDat
 
   public void validate() throws org.apache.thrift.TException {
     // check for required fields
-    if (name == null) {
-      throw new org.apache.thrift.protocol.TProtocolException("Required field 'name' was not present! Struct: " + toString());
-    }
-    if (buff == null) {
-      throw new org.apache.thrift.protocol.TProtocolException("Required field 'buff' was not present! Struct: " + toString());
-    }
     // check for sub-struct validity
   }
 
@@ -384,15 +476,15 @@ public class FileDataReq implements org.apache.thrift.TBase<FileDataReq, FileDat
     }
   }
 
-  private static class FileDataReqStandardSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
-    public FileDataReqStandardScheme getScheme() {
-      return new FileDataReqStandardScheme();
+  private static class RecoveryFileResStandardSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
+    public RecoveryFileResStandardScheme getScheme() {
+      return new RecoveryFileResStandardScheme();
     }
   }
 
-  private static class FileDataReqStandardScheme extends org.apache.thrift.scheme.StandardScheme<FileDataReq> {
+  private static class RecoveryFileResStandardScheme extends org.apache.thrift.scheme.StandardScheme<RecoveryFileRes> {
 
-    public void read(org.apache.thrift.protocol.TProtocol iprot, FileDataReq struct) throws org.apache.thrift.TException {
+    public void read(org.apache.thrift.protocol.TProtocol iprot, RecoveryFileRes struct) throws org.apache.thrift.TException {
       org.apache.thrift.protocol.TField schemeField;
       iprot.readStructBegin();
       while (true)
@@ -402,15 +494,23 @@ public class FileDataReq implements org.apache.thrift.TBase<FileDataReq, FileDat
           break;
         }
         switch (schemeField.id) {
-          case 1: // NAME
-            if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
-              struct.name = iprot.readString();
-              struct.setNameIsSet(true);
+          case 1: // STATUS_CODE
+            if (schemeField.type == org.apache.thrift.protocol.TType.I32) {
+              struct.status_code = filesafe.StatusCode.findByValue(iprot.readI32());
+              struct.setStatus_codeIsSet(true);
             } else { 
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
             }
             break;
-          case 2: // BUFF
+          case 2: // MESSAGE
+            if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
+              struct.message = iprot.readString();
+              struct.setMessageIsSet(true);
+            } else { 
+              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+            }
+            break;
+          case 10: // BUFF
             if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
               struct.buff = iprot.readBinary();
               struct.setBuffIsSet(true);
@@ -429,13 +529,18 @@ public class FileDataReq implements org.apache.thrift.TBase<FileDataReq, FileDat
       struct.validate();
     }
 
-    public void write(org.apache.thrift.protocol.TProtocol oprot, FileDataReq struct) throws org.apache.thrift.TException {
+    public void write(org.apache.thrift.protocol.TProtocol oprot, RecoveryFileRes struct) throws org.apache.thrift.TException {
       struct.validate();
 
       oprot.writeStructBegin(STRUCT_DESC);
-      if (struct.name != null) {
-        oprot.writeFieldBegin(NAME_FIELD_DESC);
-        oprot.writeString(struct.name);
+      if (struct.status_code != null) {
+        oprot.writeFieldBegin(STATUS_CODE_FIELD_DESC);
+        oprot.writeI32(struct.status_code.getValue());
+        oprot.writeFieldEnd();
+      }
+      if (struct.message != null) {
+        oprot.writeFieldBegin(MESSAGE_FIELD_DESC);
+        oprot.writeString(struct.message);
         oprot.writeFieldEnd();
       }
       if (struct.buff != null) {
@@ -449,28 +554,55 @@ public class FileDataReq implements org.apache.thrift.TBase<FileDataReq, FileDat
 
   }
 
-  private static class FileDataReqTupleSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
-    public FileDataReqTupleScheme getScheme() {
-      return new FileDataReqTupleScheme();
+  private static class RecoveryFileResTupleSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
+    public RecoveryFileResTupleScheme getScheme() {
+      return new RecoveryFileResTupleScheme();
     }
   }
 
-  private static class FileDataReqTupleScheme extends org.apache.thrift.scheme.TupleScheme<FileDataReq> {
+  private static class RecoveryFileResTupleScheme extends org.apache.thrift.scheme.TupleScheme<RecoveryFileRes> {
 
     @Override
-    public void write(org.apache.thrift.protocol.TProtocol prot, FileDataReq struct) throws org.apache.thrift.TException {
+    public void write(org.apache.thrift.protocol.TProtocol prot, RecoveryFileRes struct) throws org.apache.thrift.TException {
       org.apache.thrift.protocol.TTupleProtocol oprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
-      oprot.writeString(struct.name);
-      oprot.writeBinary(struct.buff);
+      java.util.BitSet optionals = new java.util.BitSet();
+      if (struct.isSetStatus_code()) {
+        optionals.set(0);
+      }
+      if (struct.isSetMessage()) {
+        optionals.set(1);
+      }
+      if (struct.isSetBuff()) {
+        optionals.set(2);
+      }
+      oprot.writeBitSet(optionals, 3);
+      if (struct.isSetStatus_code()) {
+        oprot.writeI32(struct.status_code.getValue());
+      }
+      if (struct.isSetMessage()) {
+        oprot.writeString(struct.message);
+      }
+      if (struct.isSetBuff()) {
+        oprot.writeBinary(struct.buff);
+      }
     }
 
     @Override
-    public void read(org.apache.thrift.protocol.TProtocol prot, FileDataReq struct) throws org.apache.thrift.TException {
+    public void read(org.apache.thrift.protocol.TProtocol prot, RecoveryFileRes struct) throws org.apache.thrift.TException {
       org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
-      struct.name = iprot.readString();
-      struct.setNameIsSet(true);
-      struct.buff = iprot.readBinary();
-      struct.setBuffIsSet(true);
+      java.util.BitSet incoming = iprot.readBitSet(3);
+      if (incoming.get(0)) {
+        struct.status_code = filesafe.StatusCode.findByValue(iprot.readI32());
+        struct.setStatus_codeIsSet(true);
+      }
+      if (incoming.get(1)) {
+        struct.message = iprot.readString();
+        struct.setMessageIsSet(true);
+      }
+      if (incoming.get(2)) {
+        struct.buff = iprot.readBinary();
+        struct.setBuffIsSet(true);
+      }
     }
   }
 
