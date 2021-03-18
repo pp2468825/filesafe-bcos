@@ -15,14 +15,15 @@ public class FileClient
      * */
     public static void main(String[] args)
     {
-        // 测试文件路径
-        String filePath = "./filesafe/3.txt";
- 
-        // 构造文件数据
-        byte[] bytes = toByteArray(filePath);
+
+        // 检索服务器文件
         SearchFileReq req = new SearchFileReq();
         req.user_id = "13787287171";
 
+        // 上传文件路径
+        String filePath = "./filesafe/3.txt";
+        // 构造文件数据
+        byte[] bytes = toByteArray(filePath);
         AddFileReq add_req = new AddFileReq();
         add_req.file_path = filePath;
         add_req.buff = ByteBuffer.wrap(bytes);
