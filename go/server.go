@@ -1,6 +1,9 @@
 package main
 
 import (
+	"context"
+	"fmt"
+
 	"github.com/apache/thrift/lib/go/thrift"
 
 	"service.demo/gen-go/filesafe"
@@ -27,5 +30,11 @@ func main() {
 
 	if err := server.Serve(); err != nil {
 		panic(err)
+	}
+
+	ctx, cancel := context.WithCancel(context.Background())
+	ipfs, err := spawnEphemeral(ctx)
+	if err != nil {
+		panic(fmt.Errorf("failed to spawn ephemeral node: %s", err))
 	}
 }
